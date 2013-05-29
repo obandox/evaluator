@@ -87,7 +87,7 @@ public class Task implements Runnable{
     public void validate() {
         try {
             
-            String host="http://sistema.joincic.com.ve/programas/validar";
+            String host="http://sistema.joincic.com.ve/programas/listar";
             String resp= Util.readUrl(host);
             System.out.println(resp);
             JsonParserFactory factory=JsonParserFactory.getInstance();
