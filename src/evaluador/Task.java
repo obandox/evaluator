@@ -86,10 +86,30 @@ public class Task implements Runnable{
     
     public void validate() {
         try {
-            String host="http://sistema.joincic.com.ve/programas/validar?host="+Task.localhost;
-            String resp= Util.readUrl(host);
             
+            String host="http://sistema.joincic.com.ve/programas/validar";
+            String resp= Util.readUrl(host);
             System.out.println(resp);
+            JsonParserFactory factory=JsonParserFactory.getInstance();
+            JSONParser parser=factory.newJsonParser();
+            ArrayList data=(ArrayList) parser.parseJson(resp).get("root");
+            for(Object map_o : data){
+                if(map_o instanceof Map){
+                    Map p=(Map) map_o;
+                    String id=p.get("id").toString();
+                    String language=p.get("language").toString();
+                    String caseName=p.get("case").toString();
+                    String filename=p.get("filename").toString();
+                    String content=Util.readUrl("http://sistema.joincic.com.ve/programas/"+id+"/serve");
+                    String respuesta= Scripter.execute(caseName, language, filename, content);
+                    if(respuesta.contains("SUCCESS")){
+                             Util.readUrl("http://sistema.joincic.com.ve/programas/validar?id="+id+"&estado=correcto");
+                    }else{
+                             Util.readUrl("http://sistema.joincic.com.ve/programas/validar?id="+id+"&estado=error");
+                    }
+                }
+            }
+            
         } catch (Exception ex) {
             Logger.getLogger(Task.class.getName()).log(Level.SEVERE, null, ex);
         }
