@@ -35,11 +35,16 @@ public class Task implements Runnable{
         while(true){
             
             if(nextCase<=0){
+                
+        try {
                 refreshCase();
+        }catch(Exception e){ e.printStackTrace(); }
                 nextCase=refreshCaseTime;
             }
             if(nextValidate<=0){
+        try {
                 validate();
+        }catch(Exception e){ e.printStackTrace(); }
                 nextValidate=validateTime;
             }
             

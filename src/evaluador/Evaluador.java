@@ -23,8 +23,9 @@ public class Evaluador {
      */
     public static void main(String[] args) {
         
-            
-            new Thread(new Task()).start();
+            Task t=new Task();
+            t.refreshCase();
+            new Thread(t).start();
         
             int port = 7770;
             
