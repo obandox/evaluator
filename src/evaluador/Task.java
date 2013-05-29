@@ -5,6 +5,7 @@ import Core.Scripter;
 import Lib.Util;
 import com.json.parsers.JSONParser;
 import com.json.parsers.JsonParserFactory;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,13 +63,11 @@ public class Task implements Runnable{
             System.out.println(resp);
             JsonParserFactory factory=JsonParserFactory.getInstance();
             JSONParser parser=factory.newJsonParser();
-            Map data=parser.parseJson(resp);
+            ArrayList data=(ArrayList) parser.parseJson(resp).get("root");
             
-            for(Object key_o : data.keySet()){
-                System.out.println("KEY: "+key_o);
-                System.out.println("TYPE OF: "+ ( data.get(key_o).getClass().toString() ) );
-                if(data.get(key_o) instanceof Map){
-                    Map problema=(Map) data.get(key_o);
+            for(Object map_o : data){
+                if(map_o instanceof Map){
+                    Map problema=(Map) map_o;
                     String caseName=problema.get("title").toString();
                     String language="java\nc++\n";
                     String input=problema.get("entradas").toString();
