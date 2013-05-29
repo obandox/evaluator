@@ -49,7 +49,8 @@ public class Task implements Runnable{
                 nextValidate=validateTime;
             }
             
-            
+            nextCase-=1;
+            nextValidate-=1;
             try {  Thread.sleep(1000); } catch (InterruptedException ex) {}
         }
         
