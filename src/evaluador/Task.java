@@ -23,7 +23,7 @@ public class Task implements Runnable{
 
     public static final int refreshCaseTime=3600;
     public static final int validateTime=60;
-    public static String localhost="http://joincicbando.dyndns.org";
+    public static  String SALT="J0iNcIC";
     
     public int nextCase=0;
     public int nextValidate=0;
@@ -100,12 +100,13 @@ public class Task implements Runnable{
                     String language=p.get("language").toString();
                     String caseName=p.get("case").toString();
                     String filename=p.get("filename").toString();
-                    String content=Util.readUrl("http://sistema.joincic.com.ve/programas/"+id+"/serve_privado");
+                    String content=Util.readUrl("http://sistema.joincic.com.ve/programas/"+id+"/serve_privado?salt="+SALT);
                     String respuesta= Scripter.execute(caseName, language, filename, content);
+                    String[] data2=respuesta.split("\n");
                     if(respuesta.contains("SUCCESS")){
-                             Util.readUrl("http://sistema.joincic.com.ve/programas/validar?id="+id+"&estado=correcto");
+                             Util.readUrl("http://sistema.joincic.com.ve/programas/validar?id="+id+"&estado=correcto&salt="+SALT);
                     }else{
-                             Util.readUrl("http://sistema.joincic.com.ve/programas/validar?id="+id+"&estado=error");
+                             Util.readUrl("http://sistema.joincic.com.ve/programas/validar?id="+id+"&estado="+data2[0]+"&salt="+SALT);
                     }
                 }
             }
