@@ -66,7 +66,7 @@ public class Task implements Runnable{
             
             for(Object key_o : data.keySet()){
                 System.out.println("KEY: "+key_o);
-                System.out.println("IS MAP: "+ ( data.get(key_o) instanceof Map) );
+                System.out.println("TYPE OF: "+ ( data.get(key_o).getClass().toString() ) );
                 if(data.get(key_o) instanceof Map){
                     Map problema=(Map) data.get(key_o);
                     String caseName=problema.get("title").toString();
