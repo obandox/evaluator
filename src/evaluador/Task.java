@@ -100,7 +100,7 @@ public class Task implements Runnable{
                     String language=p.get("language").toString();
                     String caseName=p.get("case").toString();
                     String filename=p.get("filename").toString();
-                    String content=Util.readUrl("http://sistema.joincic.com.ve/programas/"+id+"/serve");
+                    String content=Util.readUrl("http://sistema.joincic.com.ve/programas/"+id+"/serve_privado");
                     String respuesta= Scripter.execute(caseName, language, filename, content);
                     if(respuesta.contains("SUCCESS")){
                              Util.readUrl("http://sistema.joincic.com.ve/programas/validar?id="+id+"&estado=correcto");
