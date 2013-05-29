@@ -59,7 +59,7 @@ public class Task implements Runnable{
         try {
             String host="http://sistema.joincic.com.ve/problemas.json";
             String resp= Util.readUrl(host);
-            
+            System.out.println(resp);
             JsonParserFactory factory=JsonParserFactory.getInstance();
             JSONParser parser=factory.newJsonParser();
             Map data=parser.parseJson(resp);
