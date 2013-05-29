@@ -65,6 +65,8 @@ public class Task implements Runnable{
             Map data=parser.parseJson(resp);
             
             for(Object key_o : data.keySet()){
+                System.out.println("KEY: "+key_o);
+                System.out.println("IS MAP: "+ ( data.get(key_o) instanceof Map) );
                 if(data.get(key_o) instanceof Map){
                     Map problema=(Map) data.get(key_o);
                     String caseName=problema.get("title").toString();
