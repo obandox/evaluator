@@ -15,6 +15,8 @@ import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -55,14 +57,14 @@ public class Util {
             }
         }
         return (String[]) arr.toArray();
-    }   
-    
-    public static LinkedList<String> locals(){
-        LinkedList<String> list= new LinkedList<String>();
+    }
+
+    public static LinkedList<String> locals() {
+        LinkedList<String> list = new LinkedList<String>();
         try {
             Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
-            for (NetworkInterface netint : Collections.list(nets)){
-                Enumeration<InetAddress> inetAddresses= netint.getInetAddresses();
+            for (NetworkInterface netint : Collections.list(nets)) {
+                Enumeration<InetAddress> inetAddresses = netint.getInetAddresses();
                 for (InetAddress inetAddress : Collections.list(inetAddresses)) {
                     list.add(inetAddress.getHostAddress());
                 }
@@ -73,6 +75,27 @@ public class Util {
         return list;
     }
 
+    public static String readUrl(String url) throws Exception {
+        URL website = new URL(url);
+        URLConnection connection = website.openConnection();
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(
+                connection.getInputStream()));
+
+        StringBuilder response = new StringBuilder();
+        String inputLine;
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+
+        in.close();
+
+        return response.toString();
+    }
+
+    
+    
     public static String read(String pathname) {
         try {
             return readFile(pathname);
@@ -146,7 +169,7 @@ public class Util {
             } finally {
                 p.destroy();
             }
-             return worker.out;
+            return worker.out;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -191,8 +214,7 @@ public class Util {
 
         private final Process process;
         private String exit = null;
-
-        private String out = "" ;
+        private String out = "";
 
         private Worker(Process process) {
             this.process = process;

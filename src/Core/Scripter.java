@@ -39,6 +39,12 @@ public class Scripter {
     }
     
   
+    public static void makeCase(String casename, String languages, String input, String output){
+        Util.mkdir(CASES+casename);
+        Util.write(CASES+casename+"/languages", languages);
+        Util.write(CASES+casename+"/input", input);
+        Util.write(CASES+casename+"/output", output);
+    }
     
     public static String execute(String casename, String language, String filename, String content){
         Gui.print("CASE: "+casename);
