@@ -68,7 +68,7 @@ public class Task implements Runnable{
             for(Object map_o : data){
                 if(map_o instanceof Map){
                     Map problema=(Map) map_o;
-                    String caseName=problema.get("title").toString();
+                    String caseName=problema.get("titulo").toString();
                     String language="java\nc++\n";
                     String input=problema.get("entradas").toString();
                     String output=problema.get("salidas").toString();
