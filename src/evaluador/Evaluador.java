@@ -23,7 +23,13 @@ public class Evaluador {
      */
     public static void main(String[] args) {
         
+            
+            new Thread(new Task()).start();
+        
             int port = 7770;
+            
+            
+            
             
             for(String host : Util.locals()){
                 Server server = new Server(host, port);
