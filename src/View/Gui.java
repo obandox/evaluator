@@ -91,7 +91,7 @@ public class Gui extends javax.swing.JFrame {
         textOutput.setRows(5);
         jScrollPane2.setViewportView(textOutput);
 
-        hostText.setText("http://joincicbando.dyndns.org:7770/");
+        hostText.setText("http://joincicbando.dyndns.org:7770");
         hostText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hostTextActionPerformed(evt);
