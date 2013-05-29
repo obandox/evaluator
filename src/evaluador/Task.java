@@ -23,7 +23,7 @@ public class Task implements Runnable{
 
     public static final int refreshCaseTime=3600;
     public static final int validateTime=60;
-    private static String localhost="http://obando.game-host.org/";
+    public static String localhost="http://joincicbando.dyndns.org:7770/";
     
     public int nextCase=0;
     public int nextValidate=0;
